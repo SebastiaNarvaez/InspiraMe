@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Usuario</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <a href="login.html">Inicio de Sesión</a>
+    <a href="register.html">Crear Cuenta</a>
+    <a href="recuperar.html">Recuperar Contraseña</a>
+</header>
+
+  <section class="form-section active" id="registro-section">
+    <h2>Registro</h2>
+    <form id="registro-form">
+      <input type="text" name="nombres" placeholder="Nombres" required />
+      <input type="text" name="apellidos" placeholder="Apellidos" required />
+      <input type="tel" name="telefono" placeholder="Teléfono" required />
+      <input type="email" name="correo" placeholder="Correo electrónico" required />
+      <input type="password" name="contrasena" placeholder="Contraseña" required />
+      <button type="submit">Registrarse</button>
+    </form>
+
+    <div class="links">
+      <a href="login.html">¿Ya tienes cuenta? Inicia sesión</a>
+    </div>
+  </section>
+
+  <script src="register.js"></script>
+
+</body>
+</html>

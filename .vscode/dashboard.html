@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspírame - Test de Orientación Vocacional</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url(Imagenes/hola2.png);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        /* Estilo para el header */
+        header {
+            background-color: rgba(0, 123, 255, 0.7);
+            color: white;
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header a:hover {
+            color: #ffcc00;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            max-width: 900px;
+            width: 100%;
+            margin-top: 100px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Estilo de botones */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        button {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #004085;
+        }
+
+        /* Estilo para las preguntas y opciones del test */
+        .question-container {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .question-container label {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .question-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .question-options input {
+            margin-right: 10px;
+        }
+
+        .question-options label {
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .question-options input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        /* Botones dentro del formulario */
+        #test-container button {
+            margin-top: 2rem;
+        }
+
+        /* Estilos para las opciones seleccionadas */
+        .question-options label:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilo del contenedor del test */
+        #test-container {
+            display: none;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        /* Opciones del formulario */
+        #test-container button[type="submit"] {
+            background-color: #28a745;
+            font-size: 1.2rem;
+        }
+
+        #test-container button[type="button"] {
+            background-color: #dc3545;
+        }
+
+        /* Estilo para el botón de regreso */
+        #test-container button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1rem;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 10px;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .question-options label {
+                font-size: 1rem;
+            }
+
+            .question-container {
+                margin-bottom: 1.5rem;
+            }
+
+            #test-container {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+
+            button {
+                padding: 0.7rem 1.8rem;
+                font-size: 0.95rem;
+            }
+
+            .question-container label {
+                font-size: 0.95rem;
+            }
+
+            .question-options label {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Página principal -->
+    <div class="main-content">
+        <header>
+            <a href="dashboard.html">Inicio</a>
+            <a href="test.html">Test</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="universidades.html">Universidades</a>
+        </header>
+
+        <h2>Bienvenido a Inspírame</h2>
+        <p>Inspírame es una plataforma diseñada para ayudarte a encontrar la carrera que más te apasiona. A través de tests, recursos y asesoramiento, podrás elegir el camino profesional que mejor se adapte a tus habilidades e intereses.</p>
+
+        <div class="options">
+            <button onclick="window.location.href='recomendaciones.html';">¿Cómo elegir una carrera?</button>
+            <button onclick="showVocationalTest();">Hacer Test de Orientación Vocacional</button>
+        </div>
+    </div>
+
+    <!-- Contenedor para el Test de Orientación Vocacional -->
+    <div id="test-container">
+        <h2>Test de Orientación Vocacional</h2>
+        <form id="vocational-test-form">
+            <div class="question-container">
+                <label for="q1">1. ¿Qué actividades disfrutas más?</label>
+                <div class="question-options">
+                    <label><input type="radio" name="q1" value="a" required> A. Trabajo en equipo</label>
+                    <label><input type="radio" name="q1" value="b"> B. Resolver problemas</label>
+                    <label><input type="radio" name="q1" value="c"> C. Ayudar a los demás</label>
+                </div>
+            </div>
+            <div class="question-container">
+                <label for="q2">2. ¿Te interesa más?</label>
+                <div class="question-options">
+                    <label><input type="radio" name="q2" value="a" required> A. La tecnología</label>
+                    <label><input type="radio" name="q2" value="b"> B. Las ciencias sociales</label>
+                    <label><input type="radio" name="q2" value="c"> C. Las artes</label>
+                </div>
+            </div>
+            <div class="question-container">
+                <label for="q3">3. ¿Cómo prefieres resolver los problemas?</label>
+                <div class="question-options">
+                    <label><input type="radio" name="q3" value="a" required> A. Usando lógica y análisis</label>
+                    <label><input type="radio" name="q3" value="b"> B. Interactuando con personas</label>
+                    <label><input type="radio" name="q3" value="c"> C. Aplicando creatividad</label>
+                </div>
+            </div>
+            <div class="question-container">
+                <label for="q4">4. ¿Qué ambiente prefieres para trabajar?</label>
+                <div class="question-options">
+                    <label><input type="radio" name="q4" value="a" required> A. Laboratorio o tecnología</label>
+                    <label><input type="radio" name="q4" value="b"> B. Consultorio o clínica</label>
+                    <label><input type="radio" name="q4" value="c"> C. Oficina creativa</label>
+                </div>
+            </div>
+            <div class="question-container">
+                <label for="q5">5. ¿Qué tipo de persona te describes?</label>
+                <div class="question-options">
+                    <label><input type="radio" name="q5" value="a" required> A. Analítica y lógica</label>
+                    <label><input type="radio" name="q5" value="b"> B. Empática y comunicativa</label>
+                    <label><input type="radio" name="q5" value="c"> C. Artística y creativa</label>
+                </div>
+            </div>
+            <div class="question-container">
+                <label for="q6">6. ¿Te gustaría trabajar en?</label>
+                <div class="question-options">
+                    <label><input type="radio" name="q6" value="a" required> A. Empresas tecnológicas</label>
+                    <label><input type="radio" name="q6" value="b"> B. Instituciones médicas</label>
+                    <label><input type="radio" name="q6" value="c"> C. Agencias de publicidad</label>
+                </div>
+            </div>
+            <div class="question-container">
+                <label for="q7">7. ¿Cómo prefieres aprender?</label>
+                <div class="question-options">
+                    <label><input type="radio" name="q7" value="a" required> A. Investigando y practicando</label>
+                    <label><input type="radio" name="q7" value="b"> B. Interactuando con expertos</label>
+                    <label><input type="radio" name="q7" value="c"> C. Experimentando con proyectos creativos</label>
+                </div>
+            </div>
+
+            <button type="submit">Mirar Resultados</button>
+            <button type="button" onclick="backToDashboard()">Volver al Inicio</button>
+        </form>
+    </div>
+
+    <script>
+        function showVocationalTest() {
+            document.querySelector(".main-content").style.display = "none";
+            document.getElementById("test-container").style.display = "block";
+        }
+
+        document.getElementById("vocational-test-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Lista de facultades
+            const faculties = ["Educacion",  "Derecho", "Ciencias de la salud", "Artes", "Ingenieria", "Humanidades"];
+            
+            // Seleccionar una facultad al azar
+            const randomIndex = Math.floor(Math.random() * faculties.length);
+            const result = `Tu carrera recomendada es: ${faculties[randomIndex]}`;
+
+            // Mostrar el resultado al usuario
+            alert(result);
+        });
+
+        function backToDashboard() {
+            document.querySelector(".main-content").style.display = "block";
+            document.getElementById("test-container").style.display = "none";
+        }
+    </script>
+
+</body>
+</html

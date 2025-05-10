@@ -1,0 +1,108 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(Imagenes/hola2.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background-color: rgba(0, 123, 255, 0.7);
+    color: white;
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10;
+}
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+header a:hover {
+    color: #ffcc00;
+}
+
+/* Formularios */
+.form-section {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+.form-section input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    background-color: #f8f8f8;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+.form-section input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+.form-section button {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.form-section button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+.form-section button:active {
+    background-color: #004085;
+}
+.links {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+}
+.links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+.links a:hover {
+    color: #ffcc00;
+}

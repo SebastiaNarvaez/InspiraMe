@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidades - Inspírame</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(Imagenes/hola2.png);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            overflow-y: scroll; /* Barra de desplazamiento vertical */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo para el header */
+        header {
+            background-color: rgba(0, 123, 255, 0.7);
+            color: white;
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header a:hover {
+            color: #ffcc00;
+        }
+
+        /* Estilo para las secciones de formulario */
+        .main-content {
+            max-width: 900px;
+            width: 100%;
+            margin-top: 120px; /* Ajustar el espacio para el header fijo */
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            overflow-y: auto; /* Habilitar desplazamiento si el contenido es largo */
+            max-height: 90vh; /* Limitar la altura máxima */
+        }
+
+        /* Estilo para los botones */
+        .options button {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .options button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+        }
+
+        .options button:active {
+            background-color: #004085;
+            transform: scale(0.98);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Secciones ocultas */
+        .universities-container {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow-y: auto; /* Añadir desplazamiento si el contenido es largo */
+            max-height: 50vh; /* Limitar la altura del contenedor */
+        }
+
+        .university-card {
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 10px;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            width: 250px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .university-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .university-card h3 {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        /* Carreras de la universidad */
+        .careers-container {
+            margin-top: 2rem;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .career-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .career-list li {
+            font-size: 1.1rem;
+            margin: 8px 0;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="dashboard.html">Inicio</a>
+        <a href="test.html">Test</a>
+        <a href="blogs.html">Blogs</a>
+        <a href="universidades.html">Universidades</a>
+    </header>
+
+    <div class="main-content">
+        <h2>Elige un país para ver universidades destacadas</h2>
+        <div class="options">
+            <button onclick="showUniversities('Estados Unidos')">Estados Unidos</button>
+            <button onclick="showUniversities('Reino Unido')">Reino Unido</button>
+            <button onclick="showUniversities('México')">México</button>
+            <button onclick="showUniversities('Alemania')">Alemania</button>
+            <button onclick="showUniversities('Colombia')">Colombia</button> <!-- Agregado Colombia -->
+        </div>
+
+        <div id="universities-list" class="universities-container">
+            <!-- Las universidades seleccionadas aparecerán aquí -->
+        </div>
+
+        <div id="careers-container" class="careers-container">
+            <h3>Carreras disponibles:</h3>
+            <ul id="career-list" class="career-list">
+                <!-- Las carreras de la universidad seleccionada aparecerán aquí -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const universitiesData = {
+            "Estados Unidos": [
+                { 
+                    name: "Harvard University", 
+                    image: "Imagenes/harvard-university-logo-1.png",
+                    careers: [
+                        { name: "Derecho", price: "$80,000" }, 
+                        { name: "Medicina", price: "$71,000" },
+                        { name: "Ingeniería", price: "$80,000" },
+                        { name: "Ciencias Politicas", price: "$56,000" }
+                    ]
+                },
+                { 
+                    name: "Stanford University", 
+                    image: "Imagenes/stanford.png",
+                    careers: [
+                        { name: "Ingeniería Informática", price: "$65,910" },
+                        { name: "Negocios", price: "$79,860" },
+                        { name: "Psicología", price: "$51,515" },
+                        { name: "Ciencias Políticas", price: "$65,127" }
+                    ]
+                },
+                { 
+                    name: "MIT", 
+                    image: "Imagenes/mit.png",
+                    careers: [
+                        { name: "Ingeniería Eléctrica", price: "$62,000" },
+                        { name: "Física", price: "$85,960" },
+                        { name: "Arquitectura", price: "$85,960" },
+                        { name: "Matemáticas", price: "$85,960 " }
+                    ]
+                },
+                { 
+                    name: "Yale University", 
+                    image: "Imagenes/yale.png",
+                    careers: [
+                        { name: "Derecho", price: "$74,044" },
+                        { name: "Arte", price: "$48,500" },
+                        { name: "Historia", price: "$90,975" },
+                        { name: "Filosofía", price: "$67,250" }
+                    ]
+                }
+            ],
+            "Reino Unido": [
+                { 
+                    name: "University of Oxford", 
+                    image: "Imagenes/oxford.png",
+                    careers: [
+                        { name: "Historia", price: "$48,000" },
+                        { name: "Filosofía", price: "$50,000" },
+                        { name: "Ingeniería", price: "$55,000" },
+                        { name: "Medicina", price: "$60,000" }
+                    ]
+                },
+                { 
+                    name: "University of Cambridge", 
+                    image: "Imagenes/cambrige.png",
+                    careers: [
+                        { name: "Ingeniería", price: "$55,000" },
+                        { name: "Ciencias Sociales", price: "$47,000" },
+                        { name: "Derecho", price: "$55,000" },
+                        { name: "Ciencias de la Computación", price: "$58,000" }
+                    ]
+                },
+                { 
+                    name: "London School of Economics", 
+                    image: "Imagenes/london.png",
+                    careers: [
+                        { name: "Economía", price: "$55,000" },
+                        { name: "Negocios", price: "$50,000" },
+                        { name: "Ciencias Políticas", price: "$48,000" },
+                        { name: "Derecho", price: "$52,000" }
+                    ]
+                },
+                { 
+                    name: "Imperial College London", 
+                    image: "Imagenes/imperial.jpg",
+                    careers: [
+                        { name: "Ingeniería", price: "$55,000" },
+                        { name: "Medicina", price: "$58,000" },
+                        { name: "Física", price: "$50,000" },
+                        { name: "Matemáticas", price: "$53,000" }
+                    ]
+                }
+            ],
+            "México": [
+                { 
+                    name: "Universidad Nacional Autónoma de México", 
+                    image: "Imagenes/universidad de mexico.png",
+                    Examen: "Costo del examen de admision = 450 PM",
+                    careers: [
+                        { name: "Medicina", price: "$3,000 y $5,000" },
+                        { name: "Ingeniería", price: "$2,000 y $4,000" },
+                        { name: "Arquitectura", price: "$3,000 y $5,000" },
+                        { name: "Derecho", price: "$2,000 y $4,000" }
+                    ]
+                },
+                { 
+                    name: "Instituto Politécnico Nacional", 
+                    image: "Imagenes/monterey.png",
+                    Examen: "Tiene un costo de $440 PM",
+                    careers: [
+                        { name: "Ingeniería de Sistemas", price: "GRATIS" },
+                        { name: "Ingeniería Industrial", price: "GRATIS" },
+                        { name: "Ciencias de la Computación", price: "GRATIS" },
+                        { name: "Medicina", price: "GRATIS" }
+                    ]
+                }
+            ],
+            "Alemania": [
+                { 
+                    name: "Universidad Técnica de Múnich", 
+                    image: "Imagenes/heidelberg.png",
+                    careers: [
+                        { name: "Ingeniería Mecánica", price: "$12,000" },
+                        { name: "Ciencias de la Computación", price: "$11,000" },
+                        { name: "Medicina", price: "$13,000" }
+                    ]
+                }
+            ],
+            "Colombia": [
+                { 
+                    name: "Universidad de los Andes", 
+                    image: "Imagenes/andes.png",
+                    careers: [
+                        { name: "Ingeniería Industrial", price: "$71.040.000" },
+                        { name: "Derecho", price: "$25.460.000. " },
+                        { name: "Contaduria", price: "$18,476,000" }
+                    ]
+                },
+                { 
+                    name: "Universidad CESMAG", 
+                    image: "Imagenes/cesmag.png", 
+                    careers: [
+                        { name: "Derecho", price: "$4.000.000" },
+                        { name: "Ingeniería Sistemas", price: "$3.000.000" },
+                        { name: "Educacion fisica", price: "$4.000.000" }
+                    ]
+                }
+            ]
+        };
+
+        function showUniversities(country) {
+            const universitiesList = document.getElementById('universities-list');
+            universitiesList.innerHTML = '';
+
+            const selectedUniversities = universitiesData[country];
+            selectedUniversities.forEach(university => {
+                const universityCard = document.createElement('div');
+                universityCard.className = 'university-card';
+                universityCard.innerHTML = 
+                    `<img src="${university.image}" alt="${university.name}">` +
+                    `<h3>${university.name}</h3>`;
+                universityCard.onclick = () => showCareers(university);
+                universitiesList.appendChild(universityCard);
+            });
+        }
+
+        function showCareers(university) {
+            const careersContainer = document.getElementById('careers-container');
+            const careerList = document.getElementById('career-list');
+            careerList.innerHTML = '';
+
+            university.careers.forEach(career => {
+                const careerItem = document.createElement('li');
+                careerItem.innerHTML = `${career.name}: ${career.price}`;
+                careerList.appendChild(careerItem);
+            });
+
+            careersContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

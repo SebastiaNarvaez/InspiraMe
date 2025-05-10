@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="recuperar.css">
+</head>
+<body>
+    <header>
+        <a href="login.html">Inicio de Sesión</a>
+        <a href="register.html">Crear Cuenta</a>
+        <a href="recuperar.html">Recuperar Contraseña</a>
+    </header>
+
+    <section>
+        <div class="form-section">
+            <h2>Recuperar Contraseña</h2>
+            <form id="email-form" onsubmit="handleEmailSubmit(event)">
+                <input type="email" name="email" placeholder="Ingresa tu correo electrónico" required>
+                <button type="submit">Enviar Código de Verificación</button>
+            </form>
+
+            <form id="code-form" style="display:none;" onsubmit="handleCodeSubmit(event)">
+                <input type="text" name="verification-code" placeholder="Código de verificación" required>
+                <button type="submit">Verificar</button>
+            </form>
+
+            <form id="password-form" style="display:none;" onsubmit="handlePasswordChange(event)">
+                <input type="password" name="new-password" placeholder="Nueva Contraseña" required>
+                <input type="password" name="confirm-password" placeholder="Confirmar Contraseña" required>
+                <button type="submit">Cambiar Contraseña</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function handleEmailSubmit(e) {
+            e.preventDefault();
+            document.getElementById('email-form').style.display = 'none';
+            document.getElementById('code-form').style.display = 'block';
+            alert('Código enviado al correo.');
+        }
+
+        function handleCodeSubmit(e) {
+            e.preventDefault();
+            document.getElementById('code-form').style.display = 'none';
+            document.getElementById('password-form').style.display = 'block';
+            alert('Código verificado.');
+        }
+
+        function handlePasswordChange(e) {
+            e.preventDefault();
+            alert('Contraseña cambiada correctamente.');
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
